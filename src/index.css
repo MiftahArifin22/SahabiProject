@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-ink text-neutral-100 font-sans antialiased;
+  }
+  ::selection {
+    background: rgba(221, 181, 74, 0.35);
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .text-gradient-gold {
+    background: linear-gradient(110deg, #b8922f 0%, #f0cf6b 35%, #ddb54a 55%, #f7e3a3 75%, #b8922f 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply animate-shimmer;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-ink
+      bg-gradient-to-r from-gold-dark via-gold to-gold-light shadow-gold transition-all duration-300
+      hover:shadow-glow hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-light;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-gold
+      border border-gold/40 bg-white/[0.02] backdrop-blur transition-all duration-300
+      hover:border-gold hover:bg-gold/10 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-light;
+  }
+  .card {
+    @apply relative rounded-3xl border border-white/[0.07] bg-gradient-to-br from-ink-700 to-ink-800 shadow-elegant;
+  }
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/40 hover:shadow-gold;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5
+      text-xs font-semibold uppercase tracking-[0.2em] text-gold;
+  }
+  .bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23DDB54A' stroke-opacity='0.07' stroke-width='1'%3E%3Cpath d='M40 4l10 26 26 10-26 10-10 26-10-26L4 40l26-10z'/%3E%3Ccircle cx='40' cy='40' r='14'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
